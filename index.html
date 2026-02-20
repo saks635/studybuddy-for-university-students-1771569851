@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyBuddy AI - Your Virtual Study Assistant for University Success</title>
+    <meta name="description" content="StudyBuddy is an AI virtual study assistant for university students. Organize schedules, generate flashcards, quizzes, personalized learning plans, track progress, and get AI-guided explanations.">
+    <link rel="stylesheet" href="style.css"> <!-- Link to your global stylesheet -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* Basic inline styles for demonstration and readability without external CSS */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; margin: 0; padding: 0; color: #333; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { background-color: #fff; padding: 15px 0; border-bottom: 1px solid #eee; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        nav .logo a { font-size: 1.8em; font-weight: bold; color: #4CAF50; text-decoration: none; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav ul li { margin-left: 25px; }
+        nav ul li a { text-decoration: none; color: #555; font-weight: 500; transition: color 0.3s ease; }
+        nav ul li a:hover { color: #4CAF50; }
+        .cta-button { display: inline-block; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: background-color 0.3s ease, color 0.3s ease; }
+        .cta-button.primary { background-color: #4CAF50; color: #fff; border: 1px solid #4CAF50; }
+        .cta-button.primary:hover { background-color: #45a049; border-color: #45a049; }
+        .cta-button.secondary { background-color: #f0f0f0; color: #4CAF50; border: 1px solid #ddd; margin-left: 10px; }
+        .cta-button.secondary:hover { background-color: #e0e0e0; }
+        .nav-cta { margin-left: 20px; }
+
+        .hero { background-color: #f9f9f9; text-align: center; padding: 80px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; }
+        .hero-content { max-width: 800px; }
+        .hero h1 { font-size: 3.2em; color: #222; margin-bottom: 15px; line-height: 1.2; }
+        .hero .subtitle { font-size: 1.4em; color: #555; margin-bottom: 30px; }
+        .hero-ctas { display: flex; justify-content: center; gap: 15px; }
+        .hero-image { margin-top: 40px; }
+        .hero-image img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+        section { padding: 60px 0; }
+        section h2 { text-align: center; font-size: 2.5em; color: #222; margin-bottom: 20px; }
+        section .section-description { text-align: center; font-size: 1.1em; color: #666; max-width: 800px; margin: 0 auto 40px; }
+
+        .problem-solution { background-color: #fff; }
+        .problem-solution .grid-2-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .problem-item { background-color: #fefefe; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
+        .problem-item h3 { color: #4CAF50; font-size: 1.5em; margin-bottom: 10px; }
+        .problem-item p { color: #666; }
+
+        .features-overview { background-color: #f0fdf0; }
+        .features-overview .grid-3-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .feature-card { background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
+        .feature-card h3 { font-size: 1.6em; color: #333; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .feature-card h3 .icon { font-size: 1.5em; color: #4CAF50; }
+        .feature-card p { color: #666; }
+
+        .value-proposition { background-color: #fff; padding: 80px 0; }
+        .value-proposition .container { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
+        .value-content { flex: 1; min-width: 300px; }
+        .value-content h2 { text-align: left; margin-bottom: 20px; }
+        .value-content p { font-size: 1.1em; color: #555; margin-bottom: 25px; }
+        .value-content ul { list-style: none; padding: 0; margin-bottom: 30px; }
+        .value-content ul li { margin-bottom: 15px; font-size: 1.05em; color: #444; }
+        .value-content ul li strong { color: #4CAF50; }
+        .value-image { flex: 1; min-width: 300px; text-align: center; }
+        .value-image img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+        .cta-banner { background-color: #4CAF50; color: #fff; text-align: center; padding: 80px 20px; }
+        .cta-banner h2 { color: #fff; font-size: 2.8em; margin-bottom: 20px; }
+        .cta-banner p { font-size: 1.3em; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .cta-banner .cta-button.primary.large { padding: 15px 35px; font-size: 1.2em; background-color: #fff; color: #4CAF50; border: none; }
+        .cta-banner .cta-button.primary.large:hover { background-color: #eee; }
+
+        footer { background-color: #222; color: #eee; padding: 50px 0 20px; font-size: 0.9em; }
+        footer .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+        .footer-col h3 { color: #4CAF50; font-size: 1.2em; margin-bottom: 15px; }
+        .footer-col p, .footer-col ul { margin: 0; padding: 0; list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #eee; text-decoration: none; transition: color 0.3s ease; }
+        .footer-col ul li a:hover { color: #4CAF50; }
+        .social-icons { display: flex; gap: 15px; margin-top: 15px; }
+        .social-icons img { width: 24px; height: 24px; border-radius: 4px; }
+        .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #444; color: #bbb; }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            nav { flex-direction: column; gap: 15px; }
+            nav ul { margin-top: 10px; }
+            nav ul li { margin: 0 10px; }
+            .hero { padding: 60px 20px; }
+            .hero h1 { font-size: 2.5em; }
+            .hero .subtitle { font-size: 1.2em; }
+            .hero-ctas { flex-direction: column; gap: 10px; }
+            .hero-ctas .cta-button { width: 80%; margin: 0 auto; }
+            section h2 { font-size: 2em; }
+            .value-proposition .container { flex-direction: column; }
+            .value-content, .value-image { text-align: center; }
+            .value-content h2 { text-align: center; }
+            .cta-banner h2 { font-size: 2.2em; }
+            footer .container { grid-template-columns: 1fr; text-align: center; }
+            .footer-col ul { display: flex; flex-direction: column; align-items: center; }
+            .social-icons { justify-content: center; }
+        }
+    </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">StudyBuddy AI</a>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="#" class="cta-button nav-cta primary">Get Started Free</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Master Your University Studies with AI.</h1>
+                <p class="subtitle">StudyBuddy is your personalized AI virtual assistant, designed to help university students excel academically.</p>
+                <div class="hero-ctas">
+                    <a href="#" class="cta-button primary">Start Your Free Trial</a>
+                    <a href="#" class="cta-button secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://via.placeholder.com/600x400?text=StudyBuddy+AI+Interface" alt="StudyBuddy AI Interface on a laptop or tablet, showing study plans and flashcards.">
+            </div>
+        </section>
+
+        <section class="problem-solution">
+            <div class="container">
+                <h2>Tired of Disorganized Studying?</h2>
+                <p class="section-description">University life is demanding. StudyBuddy is built to tackle common student challenges head-on, transforming how you learn and retain information.</p>
+                <div class="grid-2-cols">
+                    <div class="problem-item">
+                        <h3>Inefficient Study Methods</h3>
+                        <p>Struggling with time management, scattered notes, and ineffective revision techniques?</p>
+                    </div>
+                    <div class="problem-item">
+                        <h3>Lack of Personalized Support</h3>
+                        <p>Generic study guides don't cater to your unique learning style or specific weak areas.</p>
+                    </div>
+                    <div class="problem-item">
+                        <h3>Complex Concepts & Retention</h3>
+                        <p>Difficult subjects and vast amounts of information make it hard to grasp and remember key topics.</p>
+                    </div>
+                    <div class="problem-item">
+                        <h3>Overwhelmed by Organization</h3>
+                        <p>Keeping track of multiple courses, assignments, and exam schedules can be a nightmare.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-overview">
+            <div class="container">
+                <h2>How StudyBuddy Transforms Your Learning</h2>
+                <p class="section-description">Leveraging cutting-edge AI, StudyBuddy provides a suite of tools designed for the modern university student.</p>
+                <div class="grid-3-cols">
+                    <div class="feature-card">
+                        <h3><span class="icon">🗓️</span> Smart Schedule Organizer</h3>
+                        <p>Effortlessly manage your study timetable, assignments, and deadlines across all your courses.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><span class="icon">🧠</span> Personalized Learning Plans</h3>
+                        <p>Get tailored study paths based on your strengths, weaknesses, and upcoming exams, ensuring optimal preparation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><span class="icon">💡</span> AI-Guided Explanations</h3>
+                        <p>Understand complex subjects with clear, concise, and interactive explanations from your AI tutor.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><span class="icon">📝</span> Flashcards & Quizzes</h3>
+                        <p>Generate custom flashcards and practice quizzes instantly to test your knowledge and boost retention.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><span class="icon">📈</span> Progress Tracking & Insights</h3>
+                        <p>Monitor your academic growth, identify weak topics, and get actionable insights to improve your study strategy.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><span class="icon">🎯</span> Targeted Topic Identification</h3>
+                        <p>StudyBuddy pinpoints areas where you need more focus, making your study sessions more efficient.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="value-proposition">
+            <div class="container">
+                <div class="value-content">
+                    <h2>Why Choose StudyBuddy?</h2>
+                    <p>In a crowded market, StudyBuddy stands out by offering truly personalized, AI-driven support that adapts to <em>you</em>.</p>
+                    <ul>
+                        <li><strong>Truly Personalized:</strong> Unlike generic tools, StudyBuddy crafts learning plans unique to your academic journey.</li>
+                        <li><strong>AI-Powered Clarity:</strong> Get instant, easy-to-understand explanations for even the most challenging concepts.</li>
+                        <li><strong>Efficiency Redefined:</strong> Spend less time organizing and more time learning effectively.</li>
+                        <li><strong>Designed for University Students:</strong> Built specifically for the demands and pace of higher education.</li>
+                    </ul>
+                    <a href="#" class="cta-button primary">Discover Your Potential</a>
+                </div>
+                <div class="value-image">
+                    <img src="https://via.placeholder.com/500x350?text=Personalized+Learning" alt="Student interacting with a personalized learning dashboard.">
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-banner">
+            <div class="container">
+                <h2>Ready to Study Smarter?</h2>
+                <p>Join thousands of university students who are already achieving more with StudyBuddy AI.</p>
+                <a href="#" class="cta-button primary large">Get StudyBuddy Free Today</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-col">
+                <h3>StudyBuddy AI</h3>
+                <p>Your intelligent partner for academic excellence.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Connect</h3>
+                <p>Follow us on social media!</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="https://via.placeholder.com/24?text=F" alt="Facebook icon"></a>
+                    <a href="#" aria-label="Twitter"><img src="https://via.placeholder.com/24?text=T" alt="Twitter icon"></a>
+                    <a href="#" aria-label="Instagram"><img src="https://via.placeholder.com/24?text=I" alt="Instagram icon"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year"></span> StudyBuddy AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
